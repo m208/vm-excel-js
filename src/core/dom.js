@@ -20,6 +20,7 @@ class Dom {
     }
 
 
+
     append(node) {
         if (node instanceof Dom) node = node.$el
 
@@ -39,6 +40,58 @@ class Dom {
     off(eventType, callback) {
         this.$el.removeEventListener(eventType, callback)
     }
+
+    closest(selector) {
+        return $(this.$el.closest(selector))
+    }
+
+    getCoords() {
+        return this.$el.getBoundingClientRect()
+    }
+
+    addClass(value) {
+        const list = value.split(',').map((item) => item.trim())
+        this.$el.classList.add(...list)
+    }
+    removeClass(value) {
+        const list = value.split(',').map((item) => item.trim())
+        this.$el.classList.remove(...list)
+    }
+    findAll(selector) {
+        const nodeList = []
+        this.$el.querySelectorAll(selector).forEach(el => {
+            nodeList.push($(el))
+        })
+        return nodeList
+    }
+
+    height(value) {
+        if (value) this.$el.style.height = value + 'px'
+        else return this.$el.style.height
+    }
+
+    width(value) {
+        if (value) this.$el.style.width = value + 'px'
+        else return this.$el.style.width
+    }
+    get data() {
+        return this.$el.dataset
+    }
+
+    text(value) {
+        if (value) this.$el.textContent = value
+        else return this.$el.textContent
+    }
+
+
+    css(styles = {}) {
+        Object.assign(this.$el.style, styles);
+        // for (const [key, val] of Object.entries(styles)) {
+        //     if (this.$el.style.hasOwnProperty(key)) this.$el.style[key] = val
+        // }
+        return this
+    }
+
 }
 
 export function $(selector) {
