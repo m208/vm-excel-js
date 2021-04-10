@@ -3,7 +3,6 @@ const CODES = {
     Z: 90
 }
 
-<<<<<<< HEAD
 function toCell(content, index) {
     return `<div class="cell" contenteditable data-col = "${index + 1}">${content}</div>`
 }
@@ -22,19 +21,6 @@ function createRow(content, index = '') {
                     ${index}
                     ${resize}
                 </div>
-=======
-function toCell(content) {
-    return `<div class="cell" contenteditable>${content}</div>`
-}
-
-function toColumn(content) {
-    return `<div class="column">${content}</div>`
-}
-
-function createRow(content, index = '') {
-    return `<div class="row">
-                <div class="row-info">${index}</div>
->>>>>>> 35929a74fb62449686e29b83f96081bb8eb9870a
                 <div class="row-data">${content}</div>
             </div>`
 }
