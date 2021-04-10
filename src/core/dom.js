@@ -20,7 +20,10 @@ class Dom {
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 35929a74fb62449686e29b83f96081bb8eb9870a
     append(node) {
         if (node instanceof Dom) node = node.$el
 
@@ -40,6 +43,7 @@ class Dom {
     off(eventType, callback) {
         this.$el.removeEventListener(eventType, callback)
     }
+<<<<<<< HEAD
 
     closest(selector) {
         return $(this.$el.closest(selector))
@@ -92,6 +96,8 @@ class Dom {
         return this
     }
 
+=======
+>>>>>>> 35929a74fb62449686e29b83f96081bb8eb9870a
 }
 
 export function $(selector) {
