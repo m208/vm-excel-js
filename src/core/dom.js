@@ -51,10 +51,16 @@ class Dom {
     addClass(value) {
         const list = value.split(',').map((item) => item.trim())
         this.$el.classList.add(...list)
+        return this
     }
     removeClass(value) {
         const list = value.split(',').map((item) => item.trim())
         this.$el.classList.remove(...list)
+        return this
+    }
+
+    find(selector) {
+        return $(this.$el.querySelector(selector))
     }
     findAll(selector) {
         const nodeList = []
@@ -76,10 +82,27 @@ class Dom {
     get data() {
         return this.$el.dataset
     }
+    id(parse) {
+        if (!parse) return this.$el.dataset.id
 
-    text(value) {
-        if (value) this.$el.textContent = value
-        else return this.$el.textContent
+        const parsedId = this.id().split(':')  // recursia
+        return {
+            row: +parsedId[0],
+            col: +parsedId[1]
+        }
+
+    }
+
+    focus() {
+        this.$el.focus()
+        return this
+    }
+
+    text(text) {
+        if (typeof text === 'string') {
+            this.$el.textContent = text
+            return this
+        } else return this.$el.textContent
     }
 
 
