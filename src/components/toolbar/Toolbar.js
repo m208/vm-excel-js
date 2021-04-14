@@ -1,9 +1,17 @@
 import { ExcelComponent } from '../../core/ExcelComponent';
 
 export class Toolbar extends ExcelComponent {
-    static className = 'excel__toolbar'
-    toHTML() {
-        return `<div class="button">
+  static className = 'excel__toolbar'
+  constructor($root, options) {
+    super($root, {
+      name: 'Toolbar',
+      //  listeners: ['mousedown', 'keydown'],
+      ...options
+    })
+    this.$root = $root
+  }
+  toHTML() {
+    return `<div class="button">
         <i class="material-icons">format_align_left</i>
       </div>
 
@@ -26,5 +34,5 @@ export class Toolbar extends ExcelComponent {
       <div class="button">
         <i class="material-icons">format_underlined</i>
       </div>`
-    }
+  }
 }
