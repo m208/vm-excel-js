@@ -25,8 +25,14 @@ export class TableSelection {
 
     }
 
-    focus() {
+    focus() { }
 
+    applyStyle(style) {
+        this.selected.forEach($el => $el.css(style))
+    }
+
+    get selectedIds() {
+        return this.selected.map($el => $el.id())
     }
 
 }
