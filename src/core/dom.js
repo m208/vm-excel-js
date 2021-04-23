@@ -93,13 +93,21 @@ class Dom {
 
     }
 
+    attr(name, value) {
+        if (value) {
+            this.$el.setAttribute(name, value)
+            return this
+        }
+        return this.$el.getAttribute(name)
+    }
+
     focus() {
         this.$el.focus()
         return this
     }
 
     text(text) {
-        if (typeof text === 'string') {
+        if (typeof text === 'string' || typeof text === 'number') {
             this.$el.textContent = text
             return this
         } else return this.$el.textContent
@@ -108,10 +116,14 @@ class Dom {
 
     css(styles = {}) {
         Object.assign(this.$el.style, styles);
-        // for (const [key, val] of Object.entries(styles)) {
-        //     if (this.$el.style.hasOwnProperty(key)) this.$el.style[key] = val
-        // }
         return this
+    }
+
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s]
+            return res
+        }, {})
     }
 
 }
